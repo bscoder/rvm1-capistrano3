@@ -24,14 +24,13 @@ namespace :rvm1 do
     
     desc "Installs gem bundler"
     task :bundle do
-    on roles(fetch(:rvm1_roles, :all)) do
-      within release_path do
-        execute "#{fetch(:rvm1_auto_script_path)}/rvm-auto.sh #{fetch(:rvm1_ruby_version)} gem install bundler"
+      on roles(fetch(:rvm1_roles, :all)) do
+        within release_path do
+          execute "#{fetch(:rvm1_auto_script_path)}/rvm-auto.sh #{fetch(:rvm1_ruby_version)} gem install bundler"
+        end
       end
     end
     before :ruby, 'rvm1:hook'
-  end
-
 
     desc "Install gems from Gemfile into gemset using rubygems."
     task :gems do
